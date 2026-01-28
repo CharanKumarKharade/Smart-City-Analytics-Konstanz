@@ -14,6 +14,7 @@ This project demonstrates an **end-to-end data analyst workflow**: ETL → Clean
 - **Metrics:** PM2.5, PM10, NO₂
 - **Granularity:** Hourly
 - **Coverage:** 1 Jan 2026 (single day)
+- **Data type:** CSV (semicolon-separated `;`)
 - **Location:** `data/raw/air_quality/air_quality_konstanz_2026_01_01.csv`
 
 ### Weather Data — Konstanz
@@ -21,6 +22,7 @@ This project demonstrates an **end-to-end data analyst workflow**: ETL → Clean
 - **Metrics:** Temperature, Relative Humidity, Precipitation
 - **Granularity:** Hourly
 - **Coverage:** 1 Jan → 2 Feb 2026
+- **Data type:** JSON (hourly observations)
 - **Location:** `data/raw/weather/`
 
 ---
@@ -36,18 +38,29 @@ This project demonstrates an **end-to-end data analyst workflow**: ETL → Clean
 - Loaded **air quality CSV** for 1 Jan 2026
 - Standardized `datetime` column
 - Verified columns and missing values
-- ✅ Commit: `feat: Initial air quality data load for 1 Jan 2026`
+
 
 ### Day 2
 - Extracted **weather data** for Konstanz from 1 Jan → 2 Feb 2026 using Open-Meteo API
 - Saved raw JSON files in `data/raw/weather/`
 - Updated README with weather dataset info
-- ✅ Commit: `feat: Extract weather data for Konstanz 1 Jan → 2 Feb 2026`
+
+
+### Day 3
+- Merged air quality and weather datasets for 1 Jan 2026 using pandas.merge_asof 
+- Ensures each air quality measurement is aligned with the nearest weather observation as of that time 
+- Handles non-aligned timestamps between sensors and API data 
+- Cleaned merged dataset: kept columns entry_id, datetime, o3, no2, pm10, pm25, temperature, humidity, precipitation 
+- Saved processed CSV in `data/processed/merged_konstanz_2026_01_01.csv `
+- Updated README with ETL + merge logic, explaining merge_asof usage
 
 ---
-
 ## Next Steps
 - **Day 3:** Merge **air quality (1 Jan)** with weather data for the same day  
+
+
+
+
 - **Day 4:** Clean and align merged data, handle missing values, prepare for analysis  
 - Compare 1 Jan air quality against **weather trends from 1 Jan → 2 Feb 2026**  
 - Extend to additional days if needed to strengthen insights
