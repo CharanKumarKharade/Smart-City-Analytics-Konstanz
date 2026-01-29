@@ -54,13 +54,18 @@ This project demonstrates an **end-to-end data analyst workflow**: ETL → Clean
 - Saved processed CSV in `data/processed/merged_konstanz_2026_01_01.csv `
 - Updated README with ETL + merge logic, explaining merge_asof usage
 
+
+### Day 4
+- Verified row count and column consistency
+- Checked missing values after time-based merge
+- Ensured pollutant and weather ranges are realistic
+- Prepared cleaned dataset for analysis
+
+
 ---
 ## Next Steps
-- **Day 3:** Merge **air quality (1 Jan)** with weather data for the same day  
+- **Day 5:** Preview 
+- Visualize hourly PM trends
+- Compare PM vs temperature 
+- Correlation matrix
 
-
-
-
-- **Day 4:** Clean and align merged data, handle missing values, prepare for analysis  
-- Compare 1 Jan air quality against **weather trends from 1 Jan → 2 Feb 2026**  
-- Extend to additional days if needed to strengthen insights

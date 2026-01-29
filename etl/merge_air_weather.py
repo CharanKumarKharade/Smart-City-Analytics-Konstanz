@@ -24,22 +24,22 @@ air_quality["datetime"] = pd.to_datetime(
 
 air_quality = air_quality.sort_values("datetime")
 
-print("Air quality loaded:")
-print(air_quality.head())
+#print("Air quality loaded:")
+#print(air_quality.head())
 
 ## keep the updated columns only
 air_quality = air_quality.drop(columns="zeit")
-print("Air quality loaded updated columns:")
-print(air_quality.columns)
-print(air_quality.head())
+#print("Air quality loaded updated columns:")
+#print(air_quality.columns)
+#print(air_quality.head())
 
 # -----------------------------
 # Load Weather JSON
 # -----------------------------
 with open(WEATHER_FILE,"r") as f:
     weather_json = json.load(f)
-    print("Weather loaded:")
-    print(weather_json)
+    #print("Weather loaded:")
+    #print(weather_json)
 
 
 weather = pd.DataFrame({
@@ -52,8 +52,8 @@ weather = pd.DataFrame({
 weather["datetime"] = pd.to_datetime(weather["datetime"])
 weather = weather.sort_values("datetime")
 
-print("Weather loaded:")
-print(weather.head())
+#print("Weather loaded:")
+#print(weather.head())
 
 # ------------------------
 # Merge (nearest timestamp)
@@ -64,14 +64,22 @@ merged = pd.merge_asof(
     on="datetime",
     direction="nearest"
 )
-print("Merged:")
-print(merged.head())
-print(merged.columns)
+#print("Merged:")
+#print(merged.head())
+#print(merged.columns)
 
 # ------------------------
 # Save
 # ----------------------
 merged.to_csv(OUTPUT_FILE, index=False)
-print("Merged data saved to:", OUTPUT_FILE)
-print(merged.head())
-print(merged['datetime'])
+#print("Merged data saved to:", OUTPUT_FILE)
+#print("Sample 10 rows")
+#print(merged.head())
+#print(merged.isnull().sum())
+print(merged.describe())
+
+# drop all rows where all pollutants are missing
+merged = merged.dropna(
+    subset = ["pm25","pm10","no2","o3"],
+    how = "all"
+)
