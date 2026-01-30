@@ -59,8 +59,9 @@ This project demonstrates an **end-to-end data analyst workflow**: ETL → Clean
 - Verified row count and column consistency
 - Checked missing values after time-based merge
 - Ensured pollutant and weather ranges are realistic
-- Prepared cleaned dataset for analysis
-
+- Prepared cleaned dataset for analysis  
+- Applied minimal cleaning by removing rows with no air quality measurements 
+- Prepared a cleaned dataset for exploratory analysis
 
 ---
 ## Next Steps
